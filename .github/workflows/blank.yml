@@ -10,7 +10,7 @@ on:
   pull_request:
     branches: [ "main" ]
 
-  # Allows you to run this workflow manually from the Actions tab. test
+  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in paralleld
@@ -26,3 +26,10 @@ jobs:
 
       - name: Run tests
         uses: matlab-actions/run-tests@v2
+        with: 
+            test-results-pdf: test-results/pdf-results.pdf
+      - name: Upload Comparison Reports
+        uses: actions/upload-artifact@v4
+        with:
+           name: diffreports
+           path: test-results\*.pdf
