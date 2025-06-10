@@ -1,4 +1,4 @@
-classdef SOCBattery_Test < matlab.unittest.TestCase
+classdef SOCBattery_test < matlab.unittest.TestCase
     % SOCBattery_test
     % Bu sınıf, BatterySOCSysIntTest dosyasında bulunan ilk 4 testin
     % geçtiğini doğrulamaya yarar.
@@ -33,5 +33,54 @@ classdef SOCBattery_Test < matlab.unittest.TestCase
             % Sonuçları saklayın
             testCase.testResults = results;
         end
+    end
+
+    methods (Test)
+        function verify_1(testCase)
+            % 1. testi kontrol et
+            res = testCase.testResults(1);
+            testCase.verifyTrue(res.Passed, ...
+                sprintf(['1. test başarısız oldu.\n' ...
+                         'Test Adı: %s\n' ...
+                         'Detay: %s'], res.Name, localGetFailureDetails(res)));
+        end
+
+        function verify_2(testCase)
+            % 2. testi kontrol et
+            res = testCase.testResults(2);
+            testCase.verifyTrue(res.Passed, ...
+                sprintf(['2. test başarısız oldu.\n' ...
+                         'Test Adı: %s\n' ...
+                         'Detay: %s'], res.Name, localGetFailureDetails(res)));
+        end
+
+        function verify_3(testCase)
+            % 3. testi kontrol et
+            res = testCase.testResults(3);
+            testCase.verifyTrue(res.Passed, ...
+                sprintf(['3. test başarısız oldu.\n' ...
+                         'Test Adı: %s\n' ...
+                         'Detay: %s'], res.Name, localGetFailureDetails(res)));
+        end
+
+        function verify_4(testCase)
+            % 4. testi kontrol et
+            res = testCase.testResults(4);
+            testCase.verifyTrue(res.Passed, ...
+                sprintf(['4. test başarısız oldu.\n' ...
+                         'Test Adı: %s\n' ...
+                         'Detay: %s'], res.Name, localGetFailureDetails(res)));
+        end
+    end
+end
+
+%% Yerel yardımcı fonksiyon
+function detailMsg = localGetFailureDetails(testResult)
+    % TestResult nesnesi içinde ek hata/ayrıntı varsa döndür, yoksa boş bırak.
+    if isfield(testResult.Details, 'DiagnosticRecord') && ~isempty(testResult.Details.DiagnosticRecord)
+        % DiagnosticRecord bazen çok detaylı olabilir; burada basitçe mesaj alıyoruz.
+        detailMsg = testResult.Details.DiagnosticRecord.Report;
+    else
+        detailMsg = 'Detaylı bilgi mevcut değil.';
     end
 end
