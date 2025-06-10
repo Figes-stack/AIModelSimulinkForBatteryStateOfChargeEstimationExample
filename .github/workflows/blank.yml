@@ -29,5 +29,5 @@ jobs:
       - name: Upload comparison reports
         uses: actions/upload-artifact@v4
         with:
-          name: diffreports
-          path: test-results/*.pdf                 # ileri eğik çizgi
+          name: diffreports-${{ matrix.release }}   # benzersiz isim
+          path: test-results/*.pdf
