@@ -14,7 +14,7 @@ jobs:
     # Job düzeyinde matriks
     strategy:
       matrix:
-        release: [R2024a]
+        release: [R2024a, R2024b]
 
     steps:
       - name: Checkout repository
